@@ -11,6 +11,7 @@ namespace AwesomeToDo.Domain.Data.Concrete
         public DbSet<Card> Cards { get; set; }
         public DbSet<ToDo> ToDos { get; set; }
 
+
         public EfContext(DbContextOptions<EfContext> options)
             :base(options)
         {

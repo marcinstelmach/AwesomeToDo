@@ -10,7 +10,7 @@ namespace AwesomeToDo.Domain.Data.Abstract
 {
     public interface IDbContext
     {
-        DbSet<User> Users { get; set; } 
+        DbSet<User> Users { get; set; }
         DbSet<Card> Cards { get; set; }
         DbSet<ToDo> ToDos { get; set; }
 
