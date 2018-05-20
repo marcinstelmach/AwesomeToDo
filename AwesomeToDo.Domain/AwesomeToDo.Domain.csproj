@@ -9,11 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AwesomeToDo.Core\AwesomeToDo.Core.csproj" />
+    <None Remove="AwesomeToDo.Domain.csproj.DotSettings" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\Concrete\" />
+    <ProjectReference Include="..\AwesomeToDo.Core\AwesomeToDo.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>
