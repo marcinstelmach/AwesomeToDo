@@ -17,6 +17,7 @@ namespace AwesomeToDo.Core.Exceptions
         public static ErrorCode EmptyCommand => new ErrorCode(nameof(EmptyCommand));
         public static ErrorCode InvalidCommand => new ErrorCode(nameof(InvalidCommand));
 
-        public static ErrorCode UserNotExist => new ErrorCode(nameof(UserNotExist));
+        public static ErrorCode GenericNotExist<T>()
+            => new ErrorCode($"{nameof(T)}NotExist");
     }
 }

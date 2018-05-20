@@ -2,7 +2,7 @@
 
 namespace AwesomeToDo.Domain.Repositories.Abstract
 {
-    public interface ICardRepository : IRepository<Card>
+    public interface ICardRepository
     {
     }
 }

@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using AwesomeToDo.Domain.Data.Abstract;
 
@@ -14,5 +12,6 @@ namespace AwesomeToDo.Domain.Repositories.Abstract
         Task Post(T entity);
         Task Update(T entity);
         Task Delete(T entity);
+        Task<int> SaveChangesAsync();
     }
 }

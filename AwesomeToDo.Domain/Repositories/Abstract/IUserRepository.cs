@@ -2,7 +2,8 @@
 
 namespace AwesomeToDo.Domain.Repositories.Abstract
 {
-    public interface IUserRepository : IRepository<User>
-    {
+    public interface IUserRepository
+    { 
+
     }
 }
