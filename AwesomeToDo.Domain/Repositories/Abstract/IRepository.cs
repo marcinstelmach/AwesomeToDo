@@ -9,7 +9,7 @@ namespace AwesomeToDo.Domain.Repositories.Abstract
     {
         Task<T> Get(Guid id);
         Task<IQueryable<T>> Get();
-        Task Post(T entity);
+        Task Add(T entity);
         Task Update(T entity);
         Task Delete(T entity);
         Task<int> SaveChangesAsync();

@@ -14,8 +14,8 @@ namespace AwesomeToDo.Core.Exceptions
             HttpStatusCode = httpStatusCode;
         }
 
-        public static ErrorCode EmptyCommand => new ErrorCode(nameof(EmptyCommand));
-        public static ErrorCode InvalidCommand => new ErrorCode(nameof(InvalidCommand));
+        public static ErrorCode EmptyCommand => new ErrorCode(nameof(EmptyCommand), HttpStatusCode.InternalServerError);
+        public static ErrorCode InvalidCommand => new ErrorCode(nameof(InvalidCommand), HttpStatusCode.InternalServerError);
 
         public static ErrorCode GenericNotExist<T>()
             => new ErrorCode($"{nameof(T)}NotExist");

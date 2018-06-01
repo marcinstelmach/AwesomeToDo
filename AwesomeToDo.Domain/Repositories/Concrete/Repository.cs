@@ -31,7 +31,7 @@ namespace AwesomeToDo.Domain.Repositories.Concrete
         public async Task<IQueryable<T>> Get()
             => await Task.Run(() => dbSet);
 
-        public async Task Post(T entity)
+        public async Task Add(T entity)
             => await dbSet.AddAsync(entity);
 
         public async Task Update(T entity)
