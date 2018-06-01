@@ -10,6 +10,7 @@ namespace AwesomeToDo.Domain.Data.Concrete
         public DbSet<User> Users { get; set; }
         public DbSet<Card> Cards { get; set; }
         public DbSet<ToDo> ToDos { get; set; }
+        
 
 
         public EfContext(DbContextOptions<EfContext> options)
