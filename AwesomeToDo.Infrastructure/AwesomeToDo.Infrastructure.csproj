@@ -13,14 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\Handlers\" />
-    <Folder Include="Commands\Models\" />
-    <Folder Include="Dto\" />
-    <Folder Include="Mappers\" />
-    <Folder Include="Services\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="7.0.0" />
     <PackageReference Include="NLog.Web.AspNetCore" Version="4.5.4" />
   </ItemGroup>
 

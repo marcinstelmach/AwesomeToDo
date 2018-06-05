@@ -16,7 +16,7 @@ namespace AwesomeToDo.Domain.Repositories.Concrete
 
         protected Repository()
         {
-            
+
         }
 
         public Repository(IDbContext dbContext)
@@ -41,6 +41,15 @@ namespace AwesomeToDo.Domain.Repositories.Concrete
             => await Task.Run(() => dbSet.Remove(entity));
 
         public async Task<int> SaveChangesAsync()
-            => await dbContext.SaveChangesAsync();
+        {
+            try
+            {
+                return await dbContext.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+                throw new AwesomeToDoException(ErrorCode.FaultWhileSavingToDatabase, e.Message, e);
+            }
+        }
     }
 }

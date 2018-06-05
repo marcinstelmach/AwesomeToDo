@@ -9,6 +9,7 @@ using AwesomeToDo.Core.Settings;
 using AwesomeToDo.Domain.Data.Abstract;
 using AwesomeToDo.Domain.Data.Concrete;
 using AwesomeToDo.Domain.Modules;
+using AwesomeToDo.Infrastructure.Modules;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -19,6 +20,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
+using NLog;
 using NLog.Extensions.Logging;
 using NLog.Web;
 using Swashbuckle.AspNetCore.Swagger;
@@ -32,8 +34,9 @@ namespace AwesomeToDo.Api
         public IContainer Container { get; private set; }
 
 
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IHostingEnvironment hostingEnvironment)
         {
+            HostingEnvironment = hostingEnvironment;
             Configuration = configuration;
         }
 
@@ -72,6 +75,8 @@ namespace AwesomeToDo.Api
             builder.Populate(services);
             builder.RegisterModule<RepositoriesModule>();
             builder.RegisterModule(new SettingsModule(Configuration));
+            builder.RegisterModule<CommandModule>();
+            builder.RegisterInstance(LogManager.GetCurrentClassLogger()).As<NLog.ILogger>();
 
             Container = builder.Build();
             return new AutofacServiceProvider(Container);
