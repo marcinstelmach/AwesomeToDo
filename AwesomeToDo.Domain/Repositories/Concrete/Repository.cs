@@ -14,10 +14,6 @@ namespace AwesomeToDo.Domain.Repositories.Concrete
         private readonly IDbContext dbContext;
         private readonly DbSet<T> dbSet;
 
-        protected Repository()
-        {
-
-        }
 
         public Repository(IDbContext dbContext)
         {

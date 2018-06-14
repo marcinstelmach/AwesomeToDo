@@ -9,6 +9,7 @@ namespace AwesomeToDo.Domain.Repositories.Concrete
         private readonly IDbContext dbContext;
 
         public CardRepository(IDbContext dbContext)
+            : base(dbContext)
         {
             this.dbContext = dbContext;
         }

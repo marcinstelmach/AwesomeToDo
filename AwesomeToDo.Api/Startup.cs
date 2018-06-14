@@ -74,9 +74,12 @@ namespace AwesomeToDo.Api
             var builder = new ContainerBuilder();
             builder.Populate(services);
             builder.RegisterModule<RepositoriesModule>();
+            builder.RegisterModule<ServicesModule>();
+            builder.RegisterModule<MapperModule>();
             builder.RegisterModule(new SettingsModule(Configuration));
             builder.RegisterModule<CommandModule>();
             builder.RegisterInstance(LogManager.GetCurrentClassLogger()).As<NLog.ILogger>();
+            builder.RegisterModule<ManagersModule>();
 
             Container = builder.Build();
             return new AutofacServiceProvider(Container);

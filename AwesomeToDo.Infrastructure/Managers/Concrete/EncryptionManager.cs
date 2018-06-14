@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Security.Cryptography;
-using System.Text;
 using AwesomeToDo.Core.Exceptions;
 using AwesomeToDo.Infrastructure.Managers.Abstract;
-using Castle.Core.Internal;
 
 namespace AwesomeToDo.Infrastructure.Managers.Concrete
 {
@@ -26,9 +23,30 @@ namespace AwesomeToDo.Infrastructure.Managers.Concrete
             return Convert.ToBase64String(saltBytes);
         }
 
-        public string GetHash(string password, string salt)
+        public string GetHash(string value, string salt)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                throw new AwesomeToDoException(ErrorCode.EmptyPasswordForSaltGenerate);
+            }
+            if (string.IsNullOrWhiteSpace(salt))
+            {
+                throw new AwesomeToDoException(ErrorCode.EmptySaltForGenerateHash);
+            }
+
+            var pbkdf2 = new Rfc2898DeriveBytes(value, GetBytes(salt), DeriveBytesIterationsCount);
+
+            return Convert.ToBase64String(pbkdf2.GetBytes(SaltSize));
+        }
+
+        private byte[] GetBytes(string value)
+        {
+            var bytes = new byte[value.Length * sizeof(char)];
+
+            Buffer.BlockCopy(value.ToCharArray(), 0, bytes, 0, bytes.Length);
+            Buffer.BlockCopy(value.ToCharArray(), 0, bytes, 0, bytes.Length);
+
+            return bytes;
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using AwesomeToDo.Core.Exceptions;
 using AwesomeToDo.Domain.Data.Abstract;
+using AwesomeToDo.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace AwesomeToDo.Domain.Extensions
@@ -17,6 +18,16 @@ namespace AwesomeToDo.Domain.Extensions
             }
 
             return result;
+        }
+
+        public static async Task EnsureUserNotExistAsync(this DbSet<User> set, string email)
+        {
+            var user = await set.SingleOrDefaultAsync(u => u.Email == email);
+            if (user != null)
+            {
+                throw new AwesomeToDoException(ErrorCode.UserWithGivenEmailExist);
+            }
+
         }
     }
 }
