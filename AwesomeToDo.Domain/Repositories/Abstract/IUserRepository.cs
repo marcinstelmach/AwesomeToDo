@@ -5,6 +5,7 @@ namespace AwesomeToDo.Domain.Repositories.Abstract
 {
     public interface IUserRepository : IRepository<User>
     {
-        Task AddUserAndEnsureNotExistWithGivenEmailAsync(User user);
+        Task AddUserAsync(User user);
+        Task<User> GetUserByEmailAsync(string email);
     }
 }

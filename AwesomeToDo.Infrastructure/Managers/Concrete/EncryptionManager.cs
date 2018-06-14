@@ -39,6 +39,14 @@ namespace AwesomeToDo.Infrastructure.Managers.Concrete
             return Convert.ToBase64String(pbkdf2.GetBytes(SaltSize));
         }
 
+        public void CompareHash(string password, string passwordGiven)
+        {
+            if (!string.Equals(password, passwordGiven))
+            {
+                throw new AwesomeToDoException(ErrorCode.InvalidPassword);
+            }
+        }
+
         private byte[] GetBytes(string value)
         {
             var bytes = new byte[value.Length * sizeof(char)];

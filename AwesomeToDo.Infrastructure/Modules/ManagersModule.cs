@@ -9,6 +9,7 @@ namespace AwesomeToDo.Infrastructure.Modules
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<EncryptionManager>().As<IEncryptionManager>().InstancePerLifetimeScope();
+            builder.RegisterType<TokenManager>().As<ITokenManager>().InstancePerLifetimeScope();
         }
     }
 }

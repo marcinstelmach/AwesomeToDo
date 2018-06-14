@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using AwesomeToDo.Core.Exceptions;
 using AwesomeToDo.Domain.Data.Abstract;
@@ -27,7 +28,17 @@ namespace AwesomeToDo.Domain.Extensions
             {
                 throw new AwesomeToDoException(ErrorCode.UserWithGivenEmailExist);
             }
+        }
 
+        public static async Task<T> FindAndEnsureSingleAsync<T>(this DbSet<T> set, Expression<Func<T, bool>> action, ErrorCode code) where T : Entity
+        {
+            var result = await set.SingleOrDefaultAsync(action);
+            if (result == null)
+            {
+                throw new AwesomeToDoException(code);
+            }
+
+            return result;
         }
     }
 }

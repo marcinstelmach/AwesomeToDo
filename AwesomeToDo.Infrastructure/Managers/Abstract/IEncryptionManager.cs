@@ -4,5 +4,6 @@
     {
         string GetSalt(string password);
         string GetHash(string password, string salt);
+        void CompareHash(string password, string passwordGiven);
     }
 }
