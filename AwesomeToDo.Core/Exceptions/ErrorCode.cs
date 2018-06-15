@@ -14,8 +14,14 @@ namespace AwesomeToDo.Core.Exceptions
             HttpStatusCode = httpStatusCode;
         }
 
-        public static ErrorCode EmptyCommand => new ErrorCode(nameof(EmptyCommand));
-        public static ErrorCode InvalidCommand => new ErrorCode(nameof(InvalidCommand));
+        public static ErrorCode EmptyCommand => new ErrorCode(nameof(EmptyCommand), HttpStatusCode.InternalServerError);
+        public static ErrorCode InvalidCommand => new ErrorCode(nameof(InvalidCommand), HttpStatusCode.InternalServerError);
+        public static ErrorCode FaultWhileSavingToDatabase => new ErrorCode(nameof(FaultWhileSavingToDatabase), HttpStatusCode.InternalServerError);
+        public static ErrorCode EmptyPasswordForSaltGenerate => new ErrorCode(nameof(EmptyPasswordForSaltGenerate), HttpStatusCode.InternalServerError);
+        public static ErrorCode EmptySaltForGenerateHash => new ErrorCode(nameof(EmptySaltForGenerateHash), HttpStatusCode.InternalServerError);
+        public static ErrorCode UserWithGivenEmailExist => new ErrorCode(nameof(UserWithGivenEmailExist));
+        public static ErrorCode UserWithGivenEmailNotExist => new ErrorCode(nameof(UserWithGivenEmailNotExist));
+        public static ErrorCode InvalidPassword => new ErrorCode(nameof(InvalidPassword));
 
         public static ErrorCode GenericNotExist<T>()
             => new ErrorCode($"{nameof(T)}NotExist");

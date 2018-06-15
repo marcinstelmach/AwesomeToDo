@@ -13,7 +13,7 @@ namespace AwesomeToDo.Domain.Entities
         public string Email { get; protected set; }
         public string Password { get; protected set; }
         public string Salt { get; protected set; }
-        public DateTime CreatationDateTime { get; set; }
+        public DateTime CreatationDateTime { get; protected set; }
         public virtual IReadOnlyCollection<Card> Cards => cards;
 
 

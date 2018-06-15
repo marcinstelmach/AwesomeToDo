@@ -14,10 +14,6 @@ namespace AwesomeToDo.Domain.Repositories.Concrete
         private readonly IDbContext dbContext;
         private readonly DbSet<T> dbSet;
 
-        protected Repository()
-        {
-            
-        }
 
         public Repository(IDbContext dbContext)
         {
@@ -31,7 +27,7 @@ namespace AwesomeToDo.Domain.Repositories.Concrete
         public async Task<IQueryable<T>> Get()
             => await Task.Run(() => dbSet);
 
-        public async Task Post(T entity)
+        public async Task Add(T entity)
             => await dbSet.AddAsync(entity);
 
         public async Task Update(T entity)
@@ -41,6 +37,15 @@ namespace AwesomeToDo.Domain.Repositories.Concrete
             => await Task.Run(() => dbSet.Remove(entity));
 
         public async Task<int> SaveChangesAsync()
-            => await dbContext.SaveChangesAsync();
+        {
+            try
+            {
+                return await dbContext.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+                throw new AwesomeToDoException(ErrorCode.FaultWhileSavingToDatabase, e.Message, e);
+            }
+        }
     }
 }
