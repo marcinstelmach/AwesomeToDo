@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using AwesomeToDo.Infrastructure.Commands.Abstract;
+using AwesomeToDo.Infrastructure.Commands.Models.Card;
 using AwesomeToDo.Infrastructure.Services.Abstract.Queries;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,11 +19,15 @@ namespace AwesomeToDo.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get(Guid userId)
-            => Ok(await userQueryService.Get(userId));
+        public async Task<IActionResult> Get()
+            => Ok(await userQueryService.Get(Guid.Parse(User.Identity.Name)));
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get(Guid userId, Guid cardId)
-            => Ok(await userQueryService.Get(userId, cardId));
+        public async Task<IActionResult> Get(Guid id)
+            => Ok(await userQueryService.Get(Guid.Parse(User.Identity.Name), id));
+
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody] AddCardCommandModel command)
+            => await DispatchAsync(command.SetUserId(Guid.Parse(User.Identity.Name)));
     }
 }
