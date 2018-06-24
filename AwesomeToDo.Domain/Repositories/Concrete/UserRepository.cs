@@ -20,7 +20,7 @@ namespace AwesomeToDo.Domain.Repositories.Concrete
         public async Task AddUserAsync(User user)
         {
             await dbContext.Users.EnsureUserNotExistAsync(user.Email);
-            await Add(user);
+            await AddAsync(user);
         }
 
         public async Task<User> GetUserByEmailAsync(string email)

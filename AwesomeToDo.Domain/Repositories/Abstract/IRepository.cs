@@ -7,11 +7,11 @@ namespace AwesomeToDo.Domain.Repositories.Abstract
 {
     public interface IRepository<T> where T : Entity
     {
-        Task<T> Get(Guid id);
-        Task<IQueryable<T>> Get();
-        Task Add(T entity);
-        Task Update(T entity);
-        Task Delete(T entity);
+        Task<T> GetAsync(Guid id);
+        Task<IQueryable<T>> GetAsync();
+        Task AddAsync(T entity);
+        Task UpdateAsync(T entity);
+        Task DeleteAsync(T entity);
         Task<int> SaveChangesAsync();
     }
 }
