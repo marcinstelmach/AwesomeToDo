@@ -9,10 +9,10 @@ namespace AwesomeToDo.Api.Controllers
 {
     [Route("api/users")]
     [ApiController]
-    public class UserController : ApiController
+    public class UsersController : ApiController
     {
         private readonly IUserQueryService userQueryService;
-        public UserController(ICommandDispatcher commandDispatcher, IUserQueryService userQueryService) 
+        public UsersController(ICommandDispatcher commandDispatcher, IUserQueryService userQueryService) 
             : base(commandDispatcher)
         {
             this.userQueryService = userQueryService;

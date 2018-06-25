@@ -30,7 +30,7 @@ namespace AwesomeToDo.Infrastructure.Services.Concrete.Commands
         public async Task UpdateAsync(Guid cardId, Guid userId, string title)
         {
             var user = await userRepository.GetAsync(userId);
-            var card = user.Cards.FindIfExist(s => s.Id == cardId, ErrorCode.NotFoundUserCard);
+            var card = user.Cards.FindIfExist(s => s.Id == cardId, ErrorCode.UserCardNotExist);
             card.SetTitle(title);
             await cardRepository.UpdateAsync(card);
             await cardRepository.SaveChangesAsync();
@@ -39,7 +39,7 @@ namespace AwesomeToDo.Infrastructure.Services.Concrete.Commands
         public async Task DeleteAsync(Guid id, Guid userId)
         {
             var user = await userRepository.GetAsync(userId);
-            var card = user.Cards.FindIfExist(s => s.Id == id, ErrorCode.NotFoundUserCard);
+            var card = user.Cards.FindIfExist(s => s.Id == id, ErrorCode.UserCardNotExist);
             await cardRepository.DeleteAsync(card);
             await cardRepository.SaveChangesAsync();
         }

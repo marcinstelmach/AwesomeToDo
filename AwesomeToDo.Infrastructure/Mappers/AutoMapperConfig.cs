@@ -10,6 +10,8 @@ namespace AwesomeToDo.Infrastructure.Mappers
             return new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile(new UsersProfile());
+                cfg.AddProfile(new CardsProfile());
+                cfg.AddProfile(new ToDosProfile());
             })
             .CreateMapper();
         }

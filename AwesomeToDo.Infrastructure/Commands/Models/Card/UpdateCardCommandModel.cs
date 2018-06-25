@@ -8,10 +8,12 @@ namespace AwesomeToDo.Infrastructure.Commands.Models.Card
 {
     public class UpdateCardCommandModel : ICommandModel
     {
-        public Guid Id { get; set; }
+        [Required]
+        public Guid Id { get; private set; }
         [Required]
         public string Title { get; set; }
-        public Guid UserId { get; set; }
+        [Required]
+        public Guid UserId { get; private set; }
 
         public UpdateCardCommandModel SetId(Guid id)
         {
