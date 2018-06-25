@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using AwesomeToDo.Core.Exceptions;
 using AwesomeToDo.Domain.Entities;
@@ -35,6 +33,14 @@ namespace AwesomeToDo.Infrastructure.Services.Concrete.Commands
             var card = user.Cards.FindIfExist(s => s.Id == cardId, ErrorCode.NotFoundUserCard);
             card.SetTitle(title);
             await cardRepository.UpdateAsync(card);
+            await cardRepository.SaveChangesAsync();
+        }
+
+        public async Task DeleteAsync(Guid id, Guid userId)
+        {
+            var user = await userRepository.GetAsync(userId);
+            var card = user.Cards.FindIfExist(s => s.Id == id, ErrorCode.NotFoundUserCard);
+            await cardRepository.DeleteAsync(card);
             await cardRepository.SaveChangesAsync();
         }
     }

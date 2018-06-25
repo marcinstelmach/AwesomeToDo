@@ -23,6 +23,7 @@ namespace AwesomeToDo.Core.Exceptions
         public static ErrorCode UserWithGivenEmailNotExist => new ErrorCode(nameof(UserWithGivenEmailNotExist));
         public static ErrorCode InvalidPassword => new ErrorCode(nameof(InvalidPassword));
         public static ErrorCode NotFoundUserCard => new ErrorCode(nameof(NotFoundUserCard));
+        public static ErrorCode InvalidUserClaimName => new ErrorCode(nameof(InvalidUserClaimName));
 
         public static ErrorCode GenericNotExist<T>()
             => new ErrorCode($"{nameof(T)}NotExist");

@@ -9,5 +9,6 @@ namespace AwesomeToDo.Infrastructure.Services.Abstract.Commands
     {
         Task AddAsync(Guid userId, string title);
         Task UpdateAsync(Guid cardId, Guid userId, string title);
+        Task DeleteAsync(Guid id, Guid userId);
     }
 }

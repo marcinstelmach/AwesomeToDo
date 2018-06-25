@@ -12,6 +12,9 @@ namespace AwesomeToDo.Infrastructure.Modules
         {
             builder.RegisterType<UserQueryService>().As<IUserQueryService>().InstancePerLifetimeScope();
             builder.RegisterType<UserCommandService>().As<IUserCommandService>().InstancePerLifetimeScope();
+
+            builder.RegisterType<CardCommandService>().As<ICardCommandService>().InstancePerLifetimeScope();
+            builder.RegisterType<CardQueryService>().As<ICardQueryService>().InstancePerLifetimeScope();
         }
     }
 }
