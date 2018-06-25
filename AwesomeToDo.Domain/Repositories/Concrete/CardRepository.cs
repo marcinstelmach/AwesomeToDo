@@ -1,6 +1,11 @@
-﻿using AwesomeToDo.Domain.Data.Abstract;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using AwesomeToDo.Domain.Data.Abstract;
 using AwesomeToDo.Domain.Entities;
 using AwesomeToDo.Domain.Repositories.Abstract;
+using Microsoft.EntityFrameworkCore;
 
 namespace AwesomeToDo.Domain.Repositories.Concrete
 {
@@ -13,5 +18,8 @@ namespace AwesomeToDo.Domain.Repositories.Concrete
         {
             this.dbContext = dbContext;
         }
+
+        public async Task<IList<Card>> GetUserCardsAsync(Guid userid)
+            => await dbContext.Cards.Where(s => s.User.Id == userid).ToListAsync();
     }
 }
