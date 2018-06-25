@@ -8,7 +8,7 @@ using AwesomeToDo.Infrastructure.Services.Abstract.Queries;
 
 namespace AwesomeToDo.Infrastructure.Services.Concrete.Queries
 {
-    public class UserQueryService : IUserQueryService
+    internal class UserQueryService : IUserQueryService
     {
         private readonly IUserRepository userRepository;
         private readonly IMapper mapper;

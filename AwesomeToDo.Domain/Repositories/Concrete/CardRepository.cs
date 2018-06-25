@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AwesomeToDo.Domain.Repositories.Concrete
 {
-    public class CardRepository : Repository<Card>, ICardRepository
+    internal class CardRepository : Repository<Card>, ICardRepository
     {
         private readonly IDbContext dbContext;
 

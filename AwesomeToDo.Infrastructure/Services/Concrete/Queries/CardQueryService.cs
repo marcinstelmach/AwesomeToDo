@@ -10,15 +10,13 @@ using AwesomeToDo.Infrastructure.Services.Abstract.Queries;
 
 namespace AwesomeToDo.Infrastructure.Services.Concrete.Queries
 {
-    public class CardQueryService : ICardQueryService
+    internal class CardQueryService : ICardQueryService
     {
-        private readonly ICardRepository cardRepository; // to delete
         private readonly IUserRepository userRepository;
         private readonly IMapper mapper;
 
-        public CardQueryService(ICardRepository cardRepository, IUserRepository userRepository, IMapper mapper)
+        public CardQueryService(IUserRepository userRepository, IMapper mapper)
         {
-            this.cardRepository = cardRepository;
             this.userRepository = userRepository;
             this.mapper = mapper;
         }

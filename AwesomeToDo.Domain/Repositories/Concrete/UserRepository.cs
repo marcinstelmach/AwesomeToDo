@@ -7,7 +7,7 @@ using AwesomeToDo.Domain.Repositories.Abstract;
 
 namespace AwesomeToDo.Domain.Repositories.Concrete
 {
-    public class UserRepository : Repository<User>, IUserRepository
+    internal class UserRepository : Repository<User>, IUserRepository
     {
         private readonly IDbContext dbContext;
 
