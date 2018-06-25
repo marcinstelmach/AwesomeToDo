@@ -8,7 +8,7 @@ using AwesomeToDo.Infrastructure.Services.Abstract.Queries;
 
 namespace AwesomeToDo.Infrastructure.Services.Concrete.Queries
 {
-    public class UserQueryService : IUserQueryService
+    internal class UserQueryService : IUserQueryService
     {
         private readonly IUserRepository userRepository;
         private readonly IMapper mapper;
@@ -20,9 +20,9 @@ namespace AwesomeToDo.Infrastructure.Services.Concrete.Queries
         }
 
         public async Task<IList<UserDto>> Get()
-            => mapper.Map<IList<UserDto>>(await userRepository.Get());
+            => mapper.Map<IList<UserDto>>(await userRepository.GetAsync());
 
         public async Task<UserDto> Get(Guid id)
-            => mapper.Map<UserDto>(await userRepository.Get(id));
+            => mapper.Map<UserDto>(await userRepository.GetAsync(id));
     }
 }

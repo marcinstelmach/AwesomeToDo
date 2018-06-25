@@ -8,6 +8,6 @@ namespace AwesomeToDo.Infrastructure.Services.Abstract.Queries
     public interface IUserQueryService
     {
         Task<IList<UserDto>> Get();
-        Task<UserDto> Get(Guid id);
+        Task<UserDto> Get(Guid userId);
     }
 }

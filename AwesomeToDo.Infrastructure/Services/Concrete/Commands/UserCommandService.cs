@@ -1,11 +1,9 @@
 ﻿using System.Threading.Tasks;
-using AwesomeToDo.Domain.Data.Abstract;
 using AwesomeToDo.Domain.Entities;
 using AwesomeToDo.Domain.Repositories.Abstract;
 using AwesomeToDo.Infrastructure.Dto.Token;
 using AwesomeToDo.Infrastructure.Managers.Abstract;
 using AwesomeToDo.Infrastructure.Services.Abstract.Commands;
-using Microsoft.Extensions.Caching.Memory;
 
 namespace AwesomeToDo.Infrastructure.Services.Concrete.Commands
 {
