@@ -7,9 +7,7 @@ namespace AwesomeToDo.Infrastructure.Commands.Models.ToDo
     public class AddToDoCommandModel : ICommandModel
     {
         [Required]
-        public string Title { get; protected set; }
-        [Required]
-        public string Content { get; protected set; }
+        public string Title { get; set; }
         [Required]
         public Guid UserId { get; private set; }
         [Required]

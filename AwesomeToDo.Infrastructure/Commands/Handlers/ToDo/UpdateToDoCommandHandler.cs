@@ -15,6 +15,6 @@ namespace AwesomeToDo.Infrastructure.Commands.Handlers.ToDo
         }
 
         public async Task HandleAsync(UpdateToDoCommandModel command)
-            => await toDoCommandService.UpdateAsync(command.UserId, command.CardId, command.Id, command.Title, command.Content);
+            => await toDoCommandService.UpdateAsync(command.UserId, command.CardId, command.Id, command.Title);
     }
 }
