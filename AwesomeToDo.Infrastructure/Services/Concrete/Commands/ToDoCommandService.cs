@@ -19,21 +19,20 @@ namespace AwesomeToDo.Infrastructure.Services.Concrete.Commands
             toDoRepository = doRepository;
         }
 
-        public async Task AddAsync(Guid userId, Guid cardId, string title, string content)
+        public async Task AddAsync(Guid userId, Guid cardId, string title)
         {
             var user = await userRepository.GetAsync(userId);
             var card = user.Cards.FindIfExist(s => s.Id == cardId, ErrorCode.UserCardNotExist);
-            card.AddToDo(new ToDo(title, content));
+            card.AddToDo(new ToDo(title));
             await userRepository.SaveChangesAsync();
         }
 
-        public async Task UpdateAsync(Guid userId, Guid cardId, Guid toDoId, string title, string content)
+        public async Task UpdateAsync(Guid userId, Guid cardId, Guid toDoId, string title)
         {
             var user = await userRepository.GetAsync(userId);
             var card = user.Cards.FindIfExist(s => s.Id == cardId, ErrorCode.UserCardNotExist);
             var toDo = card.ToDos.FindIfExist(s => s.Id == toDoId, ErrorCode.ToDoNotExist);
             toDo.SetTitle(title);
-            toDo.SetContent(content);
             await userRepository.SaveChangesAsync();
         }
 

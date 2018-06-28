@@ -7,7 +7,6 @@ namespace AwesomeToDo.Domain.Entities
     public class ToDo : Entity
     {
         public string Title { get; protected set; }
-        public string Content { get; protected set; }
         public DateTime CreationDateTime { get; protected set; }
         public DateTime LastModified { get; protected set; }
         public ToDoStatus Status { get; protected set; }
@@ -18,11 +17,10 @@ namespace AwesomeToDo.Domain.Entities
 
         }
 
-        public ToDo(string title, string content)
+        public ToDo(string title)
         {
             SetId(Guid.NewGuid());
             SetTitle(title);
-            SetContent(content);
             SetCreationDateTime(DateTime.Now);
             SetLastModified(DateTime.Now);
             SetStatus(ToDoStatus.New);
@@ -37,11 +35,6 @@ namespace AwesomeToDo.Domain.Entities
         public void SetTitle(string title)
         {
             Title = title;
-        }
-
-        public void SetContent(string content)
-        {
-            Content = content;
         }
 
         public void SetCreationDateTime(DateTime dateTime)
