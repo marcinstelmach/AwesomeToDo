@@ -25,16 +25,16 @@ namespace AwesomeToDo.Domain.Repositories.Concrete
             => await dbSet.FindAndEnsureExistAsync(id, ErrorCode.GenericNotExist<T>());
 
         public async Task<IQueryable<T>> GetAsync()
-            => await Task.Run(() => dbSet);
+            => await Task.FromResult(dbSet);
 
         public async Task AddAsync(T entity)
             => await dbSet.AddAsync(entity);
 
         public async Task UpdateAsync(T entity)
-            => await Task.Run(() => dbSet.Update(entity));
+            => await Task.FromResult(dbSet.Update(entity));
 
         public async Task DeleteAsync(T entity)
-            => await Task.Run(() => dbSet.Remove(entity));
+            => await Task.FromResult(dbSet.Remove(entity));
 
         public async Task<int> SaveChangesAsync()
         {
