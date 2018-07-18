@@ -20,6 +20,8 @@ namespace AwesomeToDo.Domain.Repositories.Concrete
         }
 
         public async Task<IList<Card>> GetUserCardsAsync(Guid userid)
-            => await dbContext.Cards.Where(s => s.User.Id == userid).ToListAsync();
+            => await dbContext.Cards
+                .Where(s => s.User.Id == userid)
+                .ToListAsync();
     }
 }
