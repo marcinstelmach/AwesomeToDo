@@ -26,5 +26,14 @@ namespace AwesomeToDo.Api.Controllers
             await commandDispatcher.DispatchAsync(command);
             return Accepted();
         }
+
+        public void ValidateModel()
+        {
+            if (!ModelState.IsValid)
+            {
+                var errors = string.Join(", ", ModelState.SelectMany(x => x.Value.Errors).Select(x => x.ErrorMessage));
+                throw new AwesomeToDoException(ErrorCode.InvalidCommand, errors);
+            }
+        }
     }
 }

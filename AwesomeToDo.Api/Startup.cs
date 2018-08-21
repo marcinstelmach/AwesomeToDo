@@ -80,6 +80,7 @@ namespace AwesomeToDo.Api
             builder.RegisterModule<CommandModule>();
             builder.RegisterInstance(LogManager.GetCurrentClassLogger()).As<NLog.ILogger>();
             builder.RegisterModule<ManagersModule>();
+            builder.RegisterModule<MediatRModule>();
 
             Container = builder.Build();
             return new AutofacServiceProvider(Container);
