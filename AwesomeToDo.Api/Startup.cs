@@ -2,6 +2,7 @@
 using System.Text;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using AwesomeToDo.Api.Filters;
 using AwesomeToDo.Api.Middleware;
 using AwesomeToDo.Core.Extensions;
 using AwesomeToDo.Core.Modules;
@@ -43,8 +44,9 @@ namespace AwesomeToDo.Api
 
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc(opt => opt.Filters.Add(typeof(ValidationActionFilter)));
             services.AddMemoryCache();
+            services.Configure<ApiBehaviorOptions>(opt => opt.SuppressModelStateInvalidFilter = true);
 
             services.AddDbContext<EfContext>(options =>
             {
@@ -84,14 +86,12 @@ namespace AwesomeToDo.Api
 
             Container = builder.Build();
             return new AutofacServiceProvider(Container);
-
         }
 
         public void Configure(IApplicationBuilder app, IApplicationLifetime appLifetime, IServiceProvider serviceProvider, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddNLog();
             HostingEnvironment.ConfigureNLog($"nlog.{HostingEnvironment.EnvironmentName}.config");
-
 
             app.UseSwagger();
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Awesome ToDo API v1"));
