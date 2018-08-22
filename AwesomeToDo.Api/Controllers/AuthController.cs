@@ -1,28 +1,23 @@
 ﻿using System.Threading.Tasks;
-using AwesomeToDo.Infrastructure.Commands.Abstract;
-using AwesomeToDo.Infrastructure.Commands.Models.User;
-using AwesomeToDo.Infrastructure.Dto.Token;
+using AwesomeToDo.Infrastructure.Requests.Models.Users;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Caching.Memory;
 
 namespace AwesomeToDo.Api.Controllers
 {
     [Route("api/auth")]
     [ApiController]
-    public class AuthController : ApiController
+    public class AuthController : ControllerBase
     {
-        private readonly IMemoryCache cache;
-        public AuthController(ICommandDispatcher commandDispatcher, IMemoryCache cache)
-            : base(commandDispatcher)
+        private readonly IMediator mediator;
+
+        public AuthController(IMediator mediator)
         {
-            this.cache = cache;
+            this.mediator = mediator;
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] LoginUserCommandModel command)
-        {
-            await DispatchAsync(command);
-            return Ok(cache.Get<TokenDto>(command.TokenId));
-        }
+        public async Task<IActionResult> Post([FromBody] AuthUserRequestModel model)
+            => Ok(await mediator.Send(model));
     }
 }

@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Security.Principal;
-using System.Text;
 using AwesomeToDo.Core.Exceptions;
 
 namespace AwesomeToDo.Domain.Extensions
