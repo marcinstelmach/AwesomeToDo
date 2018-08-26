@@ -1,9 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using AwesomeToDo.Infrastructure.Commands.Abstract;
+using System.Text.RegularExpressions;
+using MediatR;
 
-namespace AwesomeToDo.Infrastructure.Commands.Models.User
+namespace AwesomeToDo.Infrastructure.Requests.Models.Users
 {
-    public class AddUserCommandModel : ICommandModel
+    public class AddUserRequestModel : IRequest
     {
         [Required]
         public string FirstName { get; set; }
@@ -15,6 +16,7 @@ namespace AwesomeToDo.Infrastructure.Commands.Models.User
         [Required]
         public string Password { get; set; }
         [Required]
+        [Compare(nameof(Password))]
         public string ConfirmPassword { get; set; }
     }
 }

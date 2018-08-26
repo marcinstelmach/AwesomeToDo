@@ -1,33 +1,35 @@
 ﻿using System;
 using System.Threading.Tasks;
-using AwesomeToDo.Infrastructure.Commands.Abstract;
-using AwesomeToDo.Infrastructure.Commands.Models.User;
-using AwesomeToDo.Infrastructure.Services.Abstract.Queries;
+using AwesomeToDo.Infrastructure.Requests.Models.Users;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AwesomeToDo.Api.Controllers
 {
     [Route("api/users")]
     [ApiController]
-    public class UsersController : ApiController
+    public class UsersController : ControllerBase
     {
-        private readonly IUserQueryService userQueryService;
-        public UsersController(ICommandDispatcher commandDispatcher, IUserQueryService userQueryService) 
-            : base(commandDispatcher)
+        private readonly IMediator mediator;
+
+        public UsersController(IMediator mediator)
         {
-            this.userQueryService = userQueryService;
+            this.mediator = mediator;
         }
 
         [HttpGet]
         public async Task<IActionResult> Get()
-            => Ok(await userQueryService.Get());
+            => Ok(await mediator.Send(new GetUsersRequestModel()));
 
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(Guid id)
-            => Ok(await userQueryService.Get(id));
+            => Ok(await mediator.Send(new GetUserByIdRequestModel(id)));
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] AddUserCommandModel command)
-            => await DispatchAsync(command);
+        public async Task<IActionResult> Post([FromBody] AddUserRequestModel request)
+        {
+            await mediator.Send(request);
+            return Accepted();
+        }
     }
 }

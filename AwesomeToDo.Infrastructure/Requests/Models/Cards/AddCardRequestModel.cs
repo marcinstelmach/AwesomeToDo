@@ -1,17 +1,17 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using AwesomeToDo.Infrastructure.Commands.Abstract;
+using MediatR;
 
-namespace AwesomeToDo.Infrastructure.Commands.Models.Card
+namespace AwesomeToDo.Infrastructure.Requests.Models.Cards
 {
-    public class AddCardCommandModel : ICommandModel
+    public class AddCardRequestModel : IRequest
     {
         [Required]
         public string Title { get; set; }
         [Required]
         public Guid UserId { get; private set; }
 
-        public AddCardCommandModel SetUserId(Guid userId)
+        public AddCardRequestModel SetUserId(Guid userId)
         {
             UserId = userId;
             return this;
