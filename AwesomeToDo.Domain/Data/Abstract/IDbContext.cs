@@ -12,7 +12,7 @@ namespace AwesomeToDo.Domain.Data.Abstract
         DbSet<Card> Cards { get; set; }
         DbSet<ToDo> ToDos { get; set; }
 
-        Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
+        Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken));
         DbSet<TEntity> Set<TEntity>() where TEntity : class;
     }
 }
