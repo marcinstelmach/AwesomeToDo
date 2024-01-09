@@ -14,9 +14,9 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="7.0.0" />
-    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="5.2.4" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="5.7.0" />
     <PackageReference Include="NLog.Web.AspNetCore" Version="4.5.4" />
-    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.2.4" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.7.0" />
     <PackageReference Include="MediatR" Version="5.1.0" />
   </ItemGroup>
 </Project>
